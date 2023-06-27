@@ -17,7 +17,7 @@ To understand the Martin robot and its functionalities, refer to the official [U
 
 ## Simulations
 
-For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository. Clone the repository and navigate to the `go1_ros_combined` directory, which contains the necessary files for simulations. Make sure to include the original README files provided within this repository for additional guidance.
+For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository or  Clone this repository and navigate to the `go1_ros_combined` directory, which contains the necessary files for simulations.
 
 ## Setup
 
