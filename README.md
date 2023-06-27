@@ -17,7 +17,7 @@ To understand the Martin robot and its functionalities, refer to the official [U
 
 ## Simulations
 
-For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository or  Clone this repository and navigate to the `go1_ros_combined` directory, which contains the necessary files for simulations.
+For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository or  Clone this repository and run catkin_make, which contains the necessary files for simulations. Remember to put this in a workspace where you want to run from, i use this same repo as my catkin workspace so wherever they mention 'catkin_ws' it will be this workspace i use
 
 
 ## Setup
