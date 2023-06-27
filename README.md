@@ -19,48 +19,73 @@ To understand the Martin robot and its functionalities, refer to the official [U
 
 For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository or  Clone this repository and navigate to the `go1_ros_combined` directory, which contains the necessary files for simulations.
 
+
 ## Setup
 
 To get started with the Martin low-level control, follow these steps:
 
-1. Launch a Windows terminal.
+1. Launch a terminal (based on your environment: Windows or Linux).
 
-2. Run the following command to start a Docker container for ROS (Robot Operating System) with VNC support:
+2. Set up the necessary environment for the Martin low-level control (based on your chosen option):
 
-   ```
-   docker run -p 6080:80 --shm-size=512m --name ros_go1 -d tiryoh/ros-desktop-vnc:melodic
-   ```
+   - **Option 1: Linux Environment with ROS, Gazebo, and Unitree SDKs**
+   
+     - Create a catkin workspace and navigate to the `src` directory:
+     
+       ```bash
+       mkdir -p catkin_ws/src
+       cd catkin_ws/src
+       ```
 
-3. Access the Docker instance through the following URL in your web browser:
+     - Clone the `unitree_ros` repository:
+     
+       ```bash
+       git clone https://github.com/unitreerobotics/unitree_ros.git
+       ```
+       
+     - Build the ROS workspace:
+     
+       ```bash
+       cd ..
+       catkin_make
+       ```
 
-   ```
-   http://localhost:6080
-   ```
+   - **Option 2: Windows Environment with Docker (Recommended)**
+   
+     - Run the following command to start a Docker container for ROS with VNC support:
+     
+       ```bash
+       docker run -p 6080:80 --shm-size=512m --name ros_go1 -d tiryoh/ros-desktop-vnc:melodic
+       ```
+       
+     - Access the Docker instance through the provided URL in your web browser.
+     
+     - Once inside the Docker container's home directory, create a catkin workspace and navigate to the `src` directory:
+     
+       ```bash
+       mkdir -p catkin_ws/src
+       cd catkin_ws/src
+       ```
+     
+   - **Shared Step for Both Options: Clone the Unitree Legged SDK for Go1**
+   
+     - Clone the Unitree Legged SDK for Go1 repository, specifically the `v3.8.0` branch:
+   
+       ```bash
+       git clone -b v3.8.0 https://github.com/unitreerobotics/unitree_legged_sdk.git
+       ```
+       
+     - Build the low-level components by navigating to the `build` directory within the `unitree_legged_sdk` folder:
+   
+       ```bash
+       cd unitree_legged_sdk
+       mkdir build
+       cd build
+       cmake ..
+       make
+       ```
 
-4. Once inside the Docker container's home directory, create a catkin workspace and navigate to the `src` directory:
-
-   ```
-   mkdir -p catkin_ws/src
-   cd catkin_ws/src
-   ```
-
-5. Clone the Unitree Legged SDK for Go1 repository, specifically the `v3.8.0` branch, using the following command:
-
-   ```
-   git clone -b v3.8.0 https://github.com/unitreerobotics/unitree_legged_sdk
-   ```
-
-6. Build the low-level components by navigating to the `build` directory within the `unitree_legged_sdk` folder:
-
-   ```
-   cd unitree_legged_sdk
-   mkdir build
-   cd build
-   cmake ..
-   make
-   ```
-
-7. Configure Go1 into low-level mode by following these button combinations:
+3. Configure Go1 into low-level mode by following these button combinations:
 
    ```
    L2 + A
@@ -69,55 +94,58 @@ To get started with the Martin low-level control, follow these steps:
    L1 + L2 + Start
    ```
 
-8. Suspend Go1 on a rack using the provided example:
+4. Suspend Go1 on a rack using the provided example:
 
-   ```
+   ```bash
    ./example_position
    ```
 
-9. Now, let's set up the ROS low-level example. In the Docker container's home directory, clone the `unitree_ros_to_real` repository:
+5. In the workspace directory (`~/catkin_ws/src` for Option 1 or `catkin_ws/src` for Option 2), clone the `unitree_ros_to_real` repository:
 
+   ```bash
+   git clone https://github.com/unitreerobotics/unitree_ros_to_real.git
    ```
-   cd ~/catkin_ws/src
-   git clone https://github.com/unitreerobotics/unitree_ros_to_real
+
+6. Build the ROS workspace:
+
+   ```bash
+   cd ~/catkin_ws (for Option 1) or cd catkin_ws (for Option 2)
+   catkin_make
    ```
 
-10. Build the ROS workspace:
+7. Source the `setup.bash` file:
 
-    ```
-    cd ~/catkin_ws
-    catkin_make
-    ```
+   ```bash
+   source ~/catkin_ws/devel/setup.bash
+   ```
 
-11. Source the `setup.bash` file:
+8. Proceed to usage instructions specific to the Martin low-level control below.
 
-    ```
-    source ~/catkin_ws/devel/setup.bash
-    ```
+
 
 ## Usage
 
-To run the low-level control example for Martin, follow these steps:
+Once you have completed the setup steps based on your environment, you can now use the Martin low-level control. Follow these steps:
 
 1. Launch the low-level ROS node:
 
-   ```
+   ```bash
    roslaunch unitree_legged_real real.launch ctrl_level:=lowlevel
    ```
 
-2. Open a new terminal and source the `setup.bash` file (or add it to your `bashrc`):
+2. Open a new terminal and source the `setup.bash` file (or add it to `bashrc`):
 
-   ```
-   source ~/cat
-
-kin_ws/devel/setup.bash
+   ```bash
+   source ~/catkin_ws/devel/setup.bash
    ```
 
-3. Run the low-level control example:
+3. Run the low-level example:
 
-   ```
+   ```bash
    rosrun unitree_legged_real example_position
    ```
+
+By following these steps, you will be able to control the Martin robot in low-level mode using the provided examples and configurations.
 
 ## Contributing
 
