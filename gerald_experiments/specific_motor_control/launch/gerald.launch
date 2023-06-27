@@ -1,0 +1,12 @@
+<launch>
+  <!-- Set the parameters for the robot name, joint number, position, and duration -->
+  <param name="/robot_name" value="go1" />
+  <param name="/robot_joint" value="$(arg robot_joint)" />
+  <param name="/joint_angle_position" value="$(arg rad_angle)" />
+  <param name="/duration" value="$(arg duration)" />
+
+  <!-- Start the ROS node -->
+  <node name="individual_joint" pkg="gerald_controller" type="gerald_servo"  respawn="true"/>
+
+
+</launch>

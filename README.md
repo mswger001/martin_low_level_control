@@ -15,9 +15,72 @@ This repository provides control for the Martin (Go1) robot at the low-level, bo
 
 To understand the Martin robot and its functionalities, refer to the official [Unitree Go1 Documentation](https://docs.trossenrobotics.com/unitree_go1_docs/downloads.html). It provides comprehensive information about the robot's capabilities, features, and specifications.
 
+Certainly! Here's a modified version of the "Simulations" section to improve readability:
+
 ## Simulations
 
-For simulation purposes, you can use the [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository or  Clone this repository and run catkin_make, which contains the necessary files for simulations. Remember to put this in a workspace where you want to run from, i use this same repo as my catkin workspace so wherever they mention 'catkin_ws' it will be this workspace i use
+For simulating the Martin robot, you have two options:
+
+### Option 1: Using Unitree ROS Git Repository
+
+You can use the Unitree ROS Git repository for simulation purposes. Follow the steps they give in he [Unitree ROS](https://github.com/unitreerobotics/unitree_ros) Git repository
+
+
+
+### Option 2: Using this Repository
+
+Alternatively, you can use this repository for simulation purposes. Follow these steps:
+
+1. Make sure you have the following dependencies installed on your system:
+   - ROS (Robot Operating System)
+   - Gazebo
+   - Unitree SDKs
+
+2. Clone this repository to your local environment:
+
+   ```bash
+   git clone https://github.com/mswger001/martin_low_level_control.git
+
+   git submodule update --init --recursive
+
+   ```
+
+3. Set up your Catkin workspace. If you don't have a Catkin workspace, create one with the desired name (e.g., `my_workspace`):
+
+   ```bash
+   mkdir -p ~/my_workspace/src
+   cd ~/my_workspace/src
+   catkin_init_workspace
+   ```
+
+4. Copy the necessary files from the cloned repository to your Catkin workspace:
+
+   ```bash
+   cp -r martin_low_level_control/* ~/my_workspace/src
+   ```
+
+5. If you have additional Python files to include in the ROS package, update the `CMakeLists.txt` file located at `~/my_workspace/src/unitree_ros/unitree_controller/CMakeLists.txt`. Use the `catkin_install_python` command to specify the path to the Python file you want to include:
+
+   ```cmake
+   catkin_install_python(PROGRAMS scripts/your_file.py
+       DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+   )
+   ```
+
+6. Build your Catkin workspace:
+
+   ```bash
+   cd ~/my_workspace
+   catkin_make
+   ```
+
+7. Source the `setup.bash` file to set up the environment:
+
+   ```bash
+   source ~/my_workspace/devel/setup.bash
+   ```
+
+Choose either option based on your preference for simulating the Martin robot. 
 
 
 ## Setup
