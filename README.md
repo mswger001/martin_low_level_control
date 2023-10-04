@@ -253,7 +253,6 @@ The `LowCmd` structure is a crucial part of the Unitree SDK, as it allows you to
 
 6. **`tau` (Torque):** `motorCmd[].tau` specifies the desired torque to be applied to the joint. You can use this parameter to apply external forces or torques to the joint.
 
-7. **Other Parameters:** Depending on the specific robot and use case, there may be additional parameters in the `LowCmd` structure for more advanced control and configuration.
 
 In summary, the `LowCmd` structure allows you to control the position (`q`), velocity (`dq`), stiffness (`Kp` and `Kd`), and torque (`tau`) of each joint in the robot. By setting these parameters appropriately, you can define the robot's desired behavior and movements.
 
